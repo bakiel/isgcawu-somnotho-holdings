@@ -14,32 +14,60 @@
     background: #0d0d0d;
     font-family: 'Source Sans 3', sans-serif;
     position: relative;
+    display: flex;
   }
 
-  /* Background image with overlay */
-  .bg {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
+  /* Left panel — text content */
+  .left {
+    width: 58%;
+    height: 100%;
+    padding: 48px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 5;
+    background: #0d0d0d;
   }
 
-  .bg img {
+  /* Right panel — hero image */
+  .right {
+    width: 42%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .right img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.3) contrast(1.1);
+    object-position: center 40%;
+    filter: brightness(0.75) contrast(1.1) saturate(1.1);
   }
 
-  .bg::after {
+  /* Gold gradient bleed from left into image */
+  .right::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(13,13,13,0.95) 0%,
-      rgba(13,13,13,0.75) 40%,
-      rgba(13,13,13,0.5) 100%
-    );
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 2;
+    background: linear-gradient(90deg, #0d0d0d 0%, transparent 100%);
+  }
+
+  /* Subtle dark overlay on image bottom for badge visibility */
+  .right::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    z-index: 2;
+    background: linear-gradient(0deg, rgba(13,13,13,0.6) 0%, transparent 100%);
   }
 
   /* Gold accent line at top */
@@ -49,36 +77,25 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #996515 0%, #D4A853 30%, #F4D794 50%, #D4A853 70%, #996515 100%);
+    background: linear-gradient(90deg, #D4A853 0%, #F4D794 30%, #D4A853 58%, rgba(212,168,83,0.3) 100%);
     z-index: 10;
-  }
-
-  /* Content */
-  .content {
-    position: relative;
-    z-index: 5;
-    height: 100%;
-    padding: 56px 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 
   /* Crown logo */
   .logo-row {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
   }
 
   .logo-row svg {
-    width: 48px;
+    width: 44px;
     height: auto;
   }
 
   .logo-text {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     color: #ffffff;
     line-height: 1.15;
@@ -86,7 +103,7 @@
 
   .logo-sub {
     font-family: 'Source Sans 3', sans-serif;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -96,17 +113,17 @@
 
   /* Main text */
   .main {
-    max-width: 700px;
+    margin: -16px 0;
   }
 
   .headline {
     font-family: 'Playfair Display', serif;
-    font-size: 64px;
+    font-size: 56px;
     font-weight: 700;
     color: #ffffff;
-    line-height: 1.05;
+    line-height: 1.08;
     letter-spacing: -0.02em;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .headline em {
@@ -119,73 +136,86 @@
   }
 
   .subtitle {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 300;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.5;
-    max-width: 520px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+    max-width: 440px;
   }
 
-  /* Bottom bar */
+  /* Bottom badges */
   .bottom {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .badges {
     display: flex;
-    gap: 16px;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   .badge {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border: 1px solid rgba(212, 168, 83, 0.25);
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid rgba(212, 168, 83, 0.2);
     border-radius: 100px;
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #D4A853;
   }
 
   .badge-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     background: #D4A853;
     border-radius: 50%;
   }
 
   .url {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.3);
     letter-spacing: 0.05em;
   }
 
-  /* Decorative corner accents */
-  .corner-tl, .corner-br {
+  /* Gold corner accent on image */
+  .corner-tr {
     position: absolute;
-    width: 80px;
-    height: 80px;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-top: 2px solid rgba(212, 168, 83, 0.4);
+    border-right: 2px solid rgba(212, 168, 83, 0.4);
     z-index: 6;
   }
 
-  .corner-tl {
-    top: 40px;
-    right: 64px;
-    border-top: 2px solid rgba(212, 168, 83, 0.3);
-    border-right: 2px solid rgba(212, 168, 83, 0.3);
+  .corner-bl {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-bottom: 2px solid rgba(212, 168, 83, 0.4);
+    border-right: 2px solid rgba(212, 168, 83, 0.4);
+    z-index: 6;
   }
 
-  .corner-br {
-    bottom: 40px;
-    right: 64px;
-    border-bottom: 2px solid rgba(212, 168, 83, 0.3);
-    border-right: 2px solid rgba(212, 168, 83, 0.3);
+  /* Vertical gold divider line */
+  .divider-line {
+    position: absolute;
+    top: 48px;
+    bottom: 48px;
+    left: 58%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, rgba(212,168,83,0.3) 20%, rgba(212,168,83,0.3) 80%, transparent 100%);
+    z-index: 7;
   }
 
   /* Noise grain */
@@ -194,7 +224,7 @@
     inset: 0;
     z-index: 8;
     pointer-events: none;
-    opacity: 0.04;
+    opacity: 0.035;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 </style>
@@ -202,15 +232,9 @@
 <body>
   <div class="top-line"></div>
   <div class="noise"></div>
+  <div class="divider-line"></div>
 
-  <div class="bg">
-    <img src="images/hero/gold_tower_dusk.png" alt="">
-  </div>
-
-  <div class="corner-tl"></div>
-  <div class="corner-br"></div>
-
-  <div class="content">
+  <div class="left">
     <div class="logo-row">
       <svg viewBox="0 0 620 510">
         <polygon fill="#ffffff" points="172.5 459.5 172.5 457.5 83.5 257.5 172.5 297.5 172.5 263.5 .5 183.5 109.5 463.5 172.5 459.5"/>
@@ -231,7 +255,7 @@
     </div>
 
     <div class="main">
-      <h1 class="headline">Building Tomorrow's<br><em>Legacy</em> Today</h1>
+      <h1 class="headline">Building<br>Tomorrow's<br><em>Legacy</em> Today</h1>
       <p class="subtitle">Level 1 B-BBEE construction excellence delivering residential, commercial, infrastructure and mining solutions across the Northern Cape.</p>
     </div>
 
@@ -244,6 +268,12 @@
       </div>
       <div class="url">isgcawusomnotho.co.za</div>
     </div>
+  </div>
+
+  <div class="right">
+    <img src="images/hero/gold_tower_dusk.png" alt="">
+    <div class="corner-tr"></div>
+    <div class="corner-bl"></div>
   </div>
 </body>
 </html>
