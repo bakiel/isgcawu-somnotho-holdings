@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Portal | Isgcawu Somnotho Holdings</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon (Crown Logo) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 620 510'%3E%3Crect width='620' height='510' fill='%230d0d0d'/%3E%3Cpolygon fill='%23D4A853' points='172.5 459.5 172.5 457.5 83.5 257.5 172.5 297.5 172.5 263.5 .5 183.5 109.5 463.5 172.5 459.5'/%3E%3Cpolygon fill='%23D4A853' points='514.5 464.5 619.5 184.5 448.5 263.5 448.5 296.5 537.5 257.5 449.5 458.5 514.5 464.5'/%3E%3Cpolygon fill='%23D4A853' points='376.5 457.5 431.5 458.5 431.5 207.91 376.5 250.77 376.5 457.5'/%3E%3Cpath fill='%23F4D794' d='M433.5,181.5c-16-19-33-38-50-57-2-3-4-5-5-8l-2,2v122.74l57-44.42v-15.31h0Z'/%3E%3Cpath fill='%23F4D794' d='M305.5,56.22c.9-.46,1.92-.72,3-.72s2.1.26,3,.72v235.67l52-40.53V99.5L310.5.5l-54,100v234.26l49-38.19V56.22Z'/%3E%3Cpolygon fill='%23F4D794' points='243.5 344.89 243.5 117.5 240.5 119.5 188.5 181.5 188.5 387.76 243.5 344.89'/%3E%3Cpolygon fill='%23D4A853' points='308.5 457.5 363.5 457.5 363.5 260.9 308.5 303.77 308.5 457.5'/%3E%3Cpolygon fill='%23D4A853' points='188.5 458.5 243.5 457.5 243.5 354.42 188.5 397.29 188.5 458.5'/%3E%3Cpolygon fill='%23D4A853' points='256.5 457.5 302.5 457.5 302.5 308.44 256.5 344.29 256.5 457.5'/%3E%3Cpath fill='%23D4A853' d='M516.5,477.5c-16-1-31-3-47-4-105-8-211-5-316,0-15,3-31,1-46,4-1,0-3,1-3,2v30h413c2,0,0-5,0-7,0-4,1-24-1-25Z'/%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --gold: #D4A853;
+      --gold-light: #F4D794;
+      --gold-dark: #996515;
+      --black: #1a1a1a;
+      --black-rich: #0d0d0d;
+      --navy: #0D2137;
+      --white: #ffffff;
+      --cream: #FDFBF7;
+      --gray-50: #fafafa;
+      --gray-100: #f5f5f5;
+      --gray-200: #e5e5e5;
+      --gray-300: #d4d4d4;
+      --gray-400: #a3a3a3;
+      --gray-500: #737373;
+      --gray-600: #525252;
+      --gray-700: #404040;
+      --gray-800: #262626;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Source Sans 3', 'Helvetica Neue', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black-rich);
+      color: var(--white);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- NAV (matches main site) ---- */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(13, 13, 13, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(212, 168, 83, 0.08);
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav__logo svg { width: 36px; height: auto; }
+
+    .nav__logo-text {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+
+    .nav__logo-sub {
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .nav__back {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s;
+    }
+    .nav__back:hover { color: var(--gold); }
+
+    /* ---- HERO ---- */
+    .page-hero {
+      padding: 140px 40px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(212,168,83,0.06), transparent 70%);
+    }
+
+    .page-hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border: 1px solid rgba(212,168,83,0.2);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .page-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .page-hero__subtitle {
+      font-size: 17px;
+      color: var(--gray-400);
+      max-width: 560px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ---- DOCUMENT GRID ---- */
+    .docs {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 40px 100px;
+    }
+
+    .docs__category {
+      margin-bottom: 48px;
+    }
+
+    .docs__category-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .docs__category-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(212,168,83,0.1);
+      border: 1px solid rgba(212,168,83,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+    }
+
+    .docs__category-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .docs__category-count {
+      font-size: 12px;
+      color: var(--gray-500);
+      margin-left: auto;
+    }
+
+    .docs__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .doc-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      cursor: pointer;
+    }
+
+    .doc-card:hover {
+      background: rgba(212,168,83,0.04);
+      border-color: rgba(212,168,83,0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .doc-card__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .doc-card__icon--pdf { background: rgba(239,68,68,0.12); color: #EF4444; }
+    .doc-card__icon--docx { background: rgba(59,130,246,0.12); color: #3B82F6; }
+    .doc-card__icon--svg { background: rgba(168,85,247,0.12); color: #A855F7; }
+    .doc-card__icon--png { background: rgba(34,197,94,0.12); color: #22C55E; }
+
+    .doc-card__info { flex: 1; min-width: 0; }
+
+    .doc-card__name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--white);
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .doc-card__meta {
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    .doc-card__download {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-500);
+      transition: all 0.2s;
+      flex-shrink: 0;
+      align-self: center;
+    }
+
+    .doc-card:hover .doc-card__download {
+      color: var(--gold);
+      background: rgba(212,168,83,0.1);
+    }
+
+    /* ---- FOOTER (matches main site) ---- */
+    .footer {
+      padding: 40px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      text-align: center;
+    }
+
+    .footer__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer__logo svg { width: 28px; height: auto; }
+
+    .footer__logo-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .footer__copy {
+      font-size: 12px;
+      color: var(--gray-600);
+    }
+
+    .footer__powered {
+      font-size: 11px;
+      color: var(--gray-600);
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .nav { padding: 16px 20px; }
+      .page-hero { padding: 120px 20px 40px; }
+      .docs { padding: 24px 20px 80px; }
+      .docs__grid { grid-template-columns: 1fr; }
+      .footer__inner { flex-direction: column; gap: 16px; }
+      .nav__back span { display: none; }
+    }
+
+    /* ---- ANIMATIONS ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      opacity: 0;
+    }
+
+    .docs__category:nth-child(1) { animation-delay: 0.1s; }
+    .docs__category:nth-child(2) { animation-delay: 0.2s; }
+    .docs__category:nth-child(3) { animation-delay: 0.3s; }
+    .docs__category:nth-child(4) { animation-delay: 0.4s; }
+    .docs__category:nth-child(5) { animation-delay: 0.5s; }
+    .docs__category:nth-child(6) { animation-delay: 0.6s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="../" class="nav__logo">
+      <svg viewBox="0 0 620 510" aria-hidden="true">
+        <polygon fill="#ffffff" points="172.5 459.5 172.5 457.5 83.5 257.5 172.5 297.5 172.5 263.5 .5 183.5 109.5 463.5 172.5 459.5"/>
+        <polygon fill="#ffffff" points="514.5 464.5 619.5 184.5 448.5 263.5 448.5 296.5 537.5 257.5 449.5 458.5 514.5 464.5"/>
+        <polygon fill="#ffffff" points="376.5 457.5 431.5 458.5 431.5 207.91 376.5 250.77 376.5 457.5"/>
+        <path fill="#D4A853" d="M433.5,181.5c-16-19-33-38-50-57-2-3-4-5-5-8l-2,2v122.74l57-44.42v-15.31h0Z"/>
+        <path fill="#D4A853" d="M305.5,56.22c.9-.46,1.92-.72,3-.72s2.1.26,3,.72v235.67l52-40.53V99.5L310.5.5l-54,100v234.26l49-38.19V56.22Z"/>
+        <polygon fill="#D4A853" points="243.5 344.89 243.5 117.5 240.5 119.5 188.5 181.5 188.5 387.76 243.5 344.89"/>
+        <polygon fill="#ffffff" points="308.5 457.5 363.5 457.5 363.5 260.9 308.5 303.77 308.5 457.5"/>
+        <polygon fill="#ffffff" points="188.5 458.5 243.5 457.5 243.5 354.42 188.5 397.29 188.5 458.5"/>
+        <polygon fill="#ffffff" points="256.5 457.5 302.5 457.5 302.5 308.44 256.5 344.29 256.5 457.5"/>
+        <path fill="#ffffff" d="M516.5,477.5c-16-1-31-3-47-4-105-8-211-5-316,0-15,3-31,1-46,4-1,0-3,1-3,2v30h413c2,0,0-5,0-7,0-4,1-24-1-25Z"/>
+      </svg>
+      <div>
+        <span class="nav__logo-text">Isgcawu Somnotho</span>
+        <span class="nav__logo-sub">Holdings (Pty) Ltd</span>
+      </div>
+    </a>
+    <a href="../" class="nav__back">
+      <i data-lucide="arrow-left" style="width:16px;height:16px;stroke-width:1.5"></i>
+      <span>Back to Website</span>
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero__badge">
+      <i data-lucide="shield-check" style="width:14px;height:14px;stroke-width:1.5"></i>
+      Secure Document Portal
+    </div>
+    <h1 class="page-hero__title">Company Documents</h1>
+    <p class="page-hero__subtitle">Access official ISH templates, agreements, brand assets, and corporate documents. All files are current and approved for use.</p>
+  </section>
+
+  <!-- DOCUMENTS -->
+  <main class="docs">
+
+    <!-- TEMPLATES -->
+    <section class="docs__category animate-in">
+      <div class="docs__category-header">
+        <div class="docs__category-icon">
+          <i data-lucide="file-text" style="width:20px;height:20px;stroke-width:1.5"></i>
+        </div>
+        <h2 class="docs__category-name">Business Templates</h2>
+        <span class="docs__category-count">6 files</span>
+      </div>
+      <div class="docs__grid">
+        <a href="files/templates/ISH_Letterhead.docx" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--docx"><i data-lucide="file-text" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">ISH Letterhead</div>
+            <div class="doc-card__meta">Word Template (.docx)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/templates/ISH_Letterhead.pdf" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--pdf"><i data-lucide="file" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">ISH Letterhead</div>
+            <div class="doc-card__meta">PDF Reference (.pdf)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/templates/ISH_Clean_Template.docx" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--docx"><i data-lucide="file-text" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">ISH Clean Template</div>
+            <div class="doc-card__meta">Word Template (.docx)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/templates/ISH_Clean_Template.pdf" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--pdf"><i data-lucide="file" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">ISH Clean Template</div>
+            <div class="doc-card__meta">PDF Reference (.pdf)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/templates/ISH_Procedure_Template.docx" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--docx"><i data-lucide="file-text" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">ISH Procedure Template</div>
+            <div class="doc-card__meta">Word Template (.docx)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/templates/ISH_Procedure_Template.pdf" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--pdf"><i data-lucide="file" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">ISH Procedure Template</div>
+            <div class="doc-card__meta">PDF Reference (.pdf)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- COMPANY PROFILE & BRAND -->
+    <section class="docs__category animate-in">
+      <div class="docs__category-header">
+        <div class="docs__category-icon">
+          <i data-lucide="building-2" style="width:20px;height:20px;stroke-width:1.5"></i>
+        </div>
+        <h2 class="docs__category-name">Company Profile &amp; Brand</h2>
+        <span class="docs__category-count">2 files</span>
+      </div>
+      <div class="docs__grid">
+        <a href="files/brand/ISH_Company_Profile.pdf" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--pdf"><i data-lucide="file" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">ISH Company Profile</div>
+            <div class="doc-card__meta">Full company profile (.pdf)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/brand/ISH_Brand_Presentation.pdf" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--pdf"><i data-lucide="file" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">ISH Brand Presentation</div>
+            <div class="doc-card__meta">Brand guidelines &amp; identity (.pdf)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- PARTNERSHIP DOCUMENTS -->
+    <section class="docs__category animate-in">
+      <div class="docs__category-header">
+        <div class="docs__category-icon">
+          <i data-lucide="handshake" style="width:20px;height:20px;stroke-width:1.5"></i>
+        </div>
+        <h2 class="docs__category-name">Partnership Documents</h2>
+        <span class="docs__category-count">3 files</span>
+      </div>
+      <div class="docs__grid">
+        <a href="files/partnership/Strategic_Partnership_Proposal_ISH.pdf" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--pdf"><i data-lucide="file" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">Strategic Partnership Proposal</div>
+            <div class="doc-card__meta">Digital lead generation proposal (.pdf)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/partnership/Partnership_Quotation_ISH.pdf" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--pdf"><i data-lucide="file" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">Partnership Quotation</div>
+            <div class="doc-card__meta">Detailed pricing &amp; scope (.pdf)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/partnership/Service_Level_Agreement_ISH.pdf" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--pdf"><i data-lucide="file" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">Service Level Agreement</div>
+            <div class="doc-card__meta">Terms, SLA &amp; deliverables (.pdf)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- AGREEMENT -->
+    <section class="docs__category animate-in">
+      <div class="docs__category-header">
+        <div class="docs__category-icon">
+          <i data-lucide="scale" style="width:20px;height:20px;stroke-width:1.5"></i>
+        </div>
+        <h2 class="docs__category-name">Agreements</h2>
+        <span class="docs__category-count">2 files</span>
+      </div>
+      <div class="docs__grid">
+        <a href="files/agreements/ISH_Digital_Lead_Gen_Agreement.pdf" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--pdf"><i data-lucide="file" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">Digital Lead Gen Agreement</div>
+            <div class="doc-card__meta">Signed services agreement (.pdf)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/agreements/ISH_Strategy_Kickoff.pdf" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--pdf"><i data-lucide="file" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">Strategy Kickoff Notes</div>
+            <div class="doc-card__meta">Onboarding &amp; action items (.pdf)</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- LOGOS -->
+    <section class="docs__category animate-in">
+      <div class="docs__category-header">
+        <div class="docs__category-icon">
+          <i data-lucide="palette" style="width:20px;height:20px;stroke-width:1.5"></i>
+        </div>
+        <h2 class="docs__category-name">Logo Files</h2>
+        <span class="docs__category-count">SVG &amp; PNG formats</span>
+      </div>
+      <div class="docs__grid">
+        <a href="files/logos/ISH_Crown_Black_Gold.svg" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--svg"><i data-lucide="image" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">Crown Logo - Black &amp; Gold</div>
+            <div class="doc-card__meta">Vector (.svg) - For light backgrounds</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/logos/ISH_Crown_White_Gold.svg" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--svg"><i data-lucide="image" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">Crown Logo - White &amp; Gold</div>
+            <div class="doc-card__meta">Vector (.svg) - For dark backgrounds</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/logos/ISH_Crown_Gold.svg" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--svg"><i data-lucide="image" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">Crown Logo - Gold</div>
+            <div class="doc-card__meta">Vector (.svg) - Mono gold</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+        <a href="files/logos/ISH_Crown_Navy_Gold.svg" class="doc-card" download>
+          <div class="doc-card__icon doc-card__icon--svg"><i data-lucide="image" style="width:22px;height:22px;stroke-width:1.5"></i></div>
+          <div class="doc-card__info">
+            <div class="doc-card__name">Crown Logo - Navy &amp; Gold</div>
+            <div class="doc-card__meta">Vector (.svg) - Corporate variant</div>
+          </div>
+          <div class="doc-card__download"><i data-lucide="download" style="width:16px;height:16px;stroke-width:1.5"></i></div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__logo">
+        <svg viewBox="0 0 620 510" aria-hidden="true">
+          <polygon fill="#ffffff" points="172.5 459.5 172.5 457.5 83.5 257.5 172.5 297.5 172.5 263.5 .5 183.5 109.5 463.5 172.5 459.5"/>
+          <polygon fill="#ffffff" points="514.5 464.5 619.5 184.5 448.5 263.5 448.5 296.5 537.5 257.5 449.5 458.5 514.5 464.5"/>
+          <polygon fill="#ffffff" points="376.5 457.5 431.5 458.5 431.5 207.91 376.5 250.77 376.5 457.5"/>
+          <path fill="#D4A853" d="M433.5,181.5c-16-19-33-38-50-57-2-3-4-5-5-8l-2,2v122.74l57-44.42v-15.31h0Z"/>
+          <path fill="#D4A853" d="M305.5,56.22c.9-.46,1.92-.72,3-.72s2.1.26,3,.72v235.67l52-40.53V99.5L310.5.5l-54,100v234.26l49-38.19V56.22Z"/>
+          <polygon fill="#D4A853" points="243.5 344.89 243.5 117.5 240.5 119.5 188.5 181.5 188.5 387.76 243.5 344.89"/>
+          <polygon fill="#ffffff" points="308.5 457.5 363.5 457.5 363.5 260.9 308.5 303.77 308.5 457.5"/>
+          <polygon fill="#ffffff" points="188.5 458.5 243.5 457.5 243.5 354.42 188.5 397.29 188.5 458.5"/>
+          <polygon fill="#ffffff" points="256.5 457.5 302.5 457.5 302.5 308.44 256.5 344.29 256.5 457.5"/>
+          <path fill="#ffffff" d="M516.5,477.5c-16-1-31-3-47-4-105-8-211-5-316,0-15,3-31,1-46,4-1,0-3,1-3,2v30h413c2,0,0-5,0-7,0-4,1-24-1-25Z"/>
+        </svg>
+        <span class="footer__logo-name">Isgcawu Somnotho Holdings</span>
+      </div>
+      <p class="footer__copy">&copy; 2025 Isgcawu Somnotho Holdings (Pty) Ltd. All rights reserved.</p>
+      <p class="footer__powered">Digital Partner &mdash; ALEPH Creative Hub</p>
+    </div>
+  </footer>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>
